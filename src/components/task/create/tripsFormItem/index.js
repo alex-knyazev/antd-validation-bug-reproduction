@@ -36,7 +36,7 @@ export function TripsFormItem(props) {
       {getFieldDecorator('trips', {
         initialValue: [],
         rules: tripsFieldsRules,
-      })(<TripsInput setFieldsValue={setFieldsValue} trips={trips} />)}
+      })(<TripsInput />)}
     </Form.Item>
   );
 }
