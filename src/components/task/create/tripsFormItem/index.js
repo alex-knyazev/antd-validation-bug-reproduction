@@ -9,7 +9,6 @@ export function TripsFormItem(props) {
     {
       required: true,
       type: 'array',
-      len: trips.length,
       fields: trips.reduce((fieldsRules, trip, index) => {
         fieldsRules[index] = {
           type: 'object',
