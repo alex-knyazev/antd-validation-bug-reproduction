@@ -5,7 +5,6 @@ export function InputText(props) {
     <Input
       value={props.value}
       onChange={e => {
-        e.stopPropagation();
         props.onChange(e.target.value);
       }}
     />

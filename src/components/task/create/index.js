@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Typography, Form, Input } from 'antd';
 
-import { TripsInput } from './tripsInput';
+import { TripsFormItem } from './tripsFormItem';
 
 function TravelFormBase(props) {
   const {
@@ -10,6 +10,7 @@ function TravelFormBase(props) {
     setFieldsValue,
     getFieldDecorator,
     getFieldsError,
+    getFieldError,
   } = props.form;
 
   const [someState, changeSomeState] = useState(false);
@@ -20,6 +21,7 @@ function TravelFormBase(props) {
   function handleSubmit(e) {
     e.preventDefault();
     validateFields({ force: true }, (err, values) => {
+      // here, in errors, we have info about trips field errors
       if (!err) {
         alert('cool!');
       }
@@ -27,7 +29,12 @@ function TravelFormBase(props) {
     });
   }
 
+  // BUT!!! when we use getFieldsError and getFieldError - at some reason we  have undefined in trips errors
+  // when 'from' or 'to' propery in some item if trips is empty
   const errors = getFieldsError();
+  const concreteError = getFieldError('trips');
+  console.log(errors);
+  console.log(concreteError);
 
   return (
     <div className="Trips">
@@ -39,7 +46,7 @@ function TravelFormBase(props) {
               rules: [{ required: true, message: 'Please enter task name!' }],
             })(<Input placeholder="Input your name" />)}
           </Form.Item>
-          <TripsInput
+          <TripsFormItem
             getFieldDecorator={getFieldDecorator}
             setFieldsValue={setFieldsValue}
             trips={trips}
