@@ -21,7 +21,6 @@ function TravelFormBase(props) {
   function handleSubmit(e) {
     e.preventDefault();
     validateFields({ force: true }, (err, values) => {
-      // here, in errors, we have info about trips field errors
       if (!err) {
         alert('cool!');
       }
@@ -29,8 +28,6 @@ function TravelFormBase(props) {
     });
   }
 
-  // BUT!!! when we use getFieldsError and getFieldError - at some reason we  have undefined in trips errors
-  // when 'from' or 'to' propery in some item if trips is empty
   const errors = getFieldsError();
   const concreteError = getFieldError('trips');
   console.log(errors);
